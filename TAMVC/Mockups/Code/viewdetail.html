@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<html>
+
+<head>
+    <title>Classifieds</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/classifiedStyles.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="jumbotron">
+            <div class="col-sm-4 col-lg-4 col-xs-8">
+                <img src="images/company_logo.png" class="img-responsive">
+                <!--<img src="images/logo.png" width="585" height="150"> -->
+            </div>
+            <div class="col-sm-6 col-lg-3 col-xs-6 hidden-xs pull-right header-div">
+                <h2 class="title">Classifieds</h2>
+            </div>
+        </div>
+        <!-- Nav bar tabs -->
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="navbar-header mynav">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand visible-xs title" href="#">Classifieds </a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav nav-right">
+                    <li>
+                        <a href="home.html"><span class="glyphicon glyphicon-home" /> Home</a>
+                    </li>
+                    <li>
+                        <a href="postad.html"><span class="glyphicon glyphicon-tasks alt" />Post Ad</a>
+                    </li>
+                    <li><a href="login.html"><span class="glyphicon glyphicon-user"> Logout</a></li>
+                    
+                    
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a><span class="glyphicon glyphicon-user" /> Hi, UserName</a>
+                    </li>
+                    <li>
+                        <a href="contactus.html"><span class="glyphicon glyphicon-earphone" /> Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="row">
+            <div class="detailcontainer">
+                <div class="col-xs-5">
+                    <img class="detail-image" src="images/2014_ford_fiesta_india.jpg" width="400px" height="300px">
+                </div>
+                <div class="col-xs-7">
+                    <h2>2009 Ford Fiesta diesel 60000 Kms</h2>
+                    <p>
+                        <span class="label label-default">Hyderbad, 21st April</span>
+                    </p>
+                    <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-2 col-sm-2 col-sm-offset-2">
+                <h2><span class = "label label-success">Rs.4,00,000</span></h2>
+            </div>
+        </div>
+    </div>
+    <footer class="container text-center">
+        <p>2016 @Techaspect Solutions</p>
+    </footer>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".image-box").on("click", function (event) {
+                var selected = "#" + $(this).attr("id");
+                $(selected).toggleClass("image-selected");
+                $('.image-box').not(this).removeClass('image-selected');
+                $(".category").text($(this).attr("id"));
+            });
+        });
+    </script>
+</body>

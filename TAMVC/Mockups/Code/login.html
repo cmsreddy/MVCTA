@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<html>
+
+<head>
+    <title>Classifieds</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/classifiedStyles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <div class="col-sm-4 col-lg-4 col-xs-8">
+                <img src="images/company_logo.png" class="img-responsive">
+                <!--<img src="images/logo.png" width="585" height="150"> -->
+            </div>
+            <div class="col-sm-6 col-lg-3 col-xs-6 hidden-xs pull-right header-div">
+                <h2 class="title">Classifieds</h2>
+            </div>
+        </div>
+        <!-- Nav bar tabs -->
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="navbar-header mynav">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand visible-xs title" href="#">Classifieds </a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-left">
+                    <li>
+                        <a href="home.html"><span class="glyphicon glyphicon-home" /> Home</a>
+                    </li>
+                    <li>
+                        <a href="postad.html"><span class="glyphicon glyphicon-tasks" /> Post Ad</a>
+                    </li>
+                    <li class="active"><a href="login.html"><span class="glyphicon glyphicon-user"> Login</a></li>                    
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a><span class="glyphicon glyphicon-user" /> Hi, Guest</a>
+                    </li>
+                    <li>
+                        <a href="contactus.html"><span class="glyphicon glyphicon-earphone" /> Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="row">
+            <div class="logincontainer">
+                Log In :
+                <form class="form-horizontal form-signin form-margin" role="form" name="emailLogin">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="email">Email:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="email" name="email" placeholder="Enter Email id">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="pwd">Password:</label>
+                        <div class="col-sm-6">
+                            <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Enter password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-10">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> Remember me</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-12">
+                            <a href="postad.html">
+                                <button id="login-btn" onclick="login()" class="btn btn-default btn-success">Log in</button>
+                            </a>
+                            <a href="register.html">
+                                <button id="register-btn" class="btn btn-default btn-warning">Register Here!</button>
+                            </a>
+                        </div>
+                    </div>
+                </form>
+                <form class="form-horizontal form-signin socialForm-margin" role="form" name="socialLogin">
+                    <div class="form-group">
+                        <!--<div class="col-sm-offset-2">
+                            <label>Continue with Google | Facebook account</label>
+                        </div>-->
+                        <div class="col-sm-offset-1 col-sm-10">
+                            <a href="#"><button class="google"><span><img src="images/gmail.png" width="40px" height="40px"> Continue with Google+</span></button></a> &nbsp &nbsp 
+                            <a href="#"><button class="facebook"><span><img src="images/fb.png" width="40px" height="40px"> Continue with Facebook</span></button></a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer class="container text-center">
+        <p>2016 @Techaspect Solutions</p>
+    </footer>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
