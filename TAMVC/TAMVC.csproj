@@ -191,6 +191,31 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\bootstrap-theme.min.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\classifiedStyles.css" />
+    <Content Include="Content\css\font-awesome.min.css" />
+    <Content Include="Content\css\jquery-ui.css" />
+    <Content Include="Content\images\2014_ford_fiesta_india.jpg" />
+    <Content Include="Content\images\car.jpg" />
+    <Content Include="Content\images\car1.jpg" />
+    <Content Include="Content\images\company_logo.png" />
+    <Content Include="Content\images\electronics.jpg" />
+    <Content Include="Content\images\fb.png" />
+    <Content Include="Content\images\ford.jpg" />
+    <Content Include="Content\images\gmail.png" />
+    <Content Include="Content\images\google.png" />
+    <Content Include="Content\images\hondacity.jpg" />
+    <Content Include="Content\images\Houses_for_rent.jpg" />
+    <Content Include="Content\images\house_rent.jpg" />
+    <Content Include="Content\images\polo.jpg" />
+    <Content Include="Content\images\smartphones.jpg" />
+    <Content Include="Content\images\smart_phones_new.jpg" />
+    <Content Include="Content\images\social-media-icons-15.png" />
+    <Content Include="Content\images\usedcar1.jpg" />
+    <Content Include="Content\js\bootstrap.min.js" />
+    <Content Include="Content\js\jquery-ui.min.js" />
+    <Content Include="Content\js\jquery.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Mockups\Code\fonts\fontawesome-webfont.svg" />
@@ -202,6 +227,15 @@
     <Content Include="Mockups\Code\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Mockups\Code\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Mockups\Code\images\fb.svg" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\images\fb.svg" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Mockups\Code\contactus.html" />
     <Content Include="Mockups\Code\css\bootstrap-theme.min.css" />
@@ -290,7 +324,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
