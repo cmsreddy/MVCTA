@@ -2,36 +2,33 @@
 @{
     ViewBag.Title = "Register";
 }
-
-<hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
-    <h2>Create a new account.</h2>
-</hgroup>
-
-@using (Html.BeginForm()) {
+@using (Html.BeginForm("Account","Register",FormMethod.Post)) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
 
     <fieldset>
-        <legend>Registration Form</legend>
-        <ol>
-            <li>
-                @Html.LabelFor(m => m.UserName)
-                @Html.TextBoxFor(m => m.UserName)
-            </li>
+        <legend>Create an account</legend>
+        <div class="form-group">
+            <label class="control-label col-sm-4" for="email">Email* </label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email id">
+            </div>
+        </div>
+                @Html.LabelFor(m => m.Email, new { @class = "control-label col-sm-4" })
+        <div class="col-sm-6">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", id = "email", name = "email", placeholder = "Enter your email id" })
+        </div>
+                
             <li>
                 @Html.LabelFor(m => m.Password)
                 @Html.PasswordFor(m => m.Password)
             </li>
             <li>
-                @Html.LabelFor(m => m.ConfirmPassword)
-                @Html.PasswordFor(m => m.ConfirmPassword)
+                @Html.LabelFor(m => m.RepeatPassword)
+                @Html.PasswordFor(m => m.RepeatPassword)
             </li>
-        </ol>
+        </ul>
         <input type="submit" value="Register" />
     </fieldset>
 }
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
