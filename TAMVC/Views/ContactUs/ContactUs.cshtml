@@ -1,0 +1,66 @@
+﻿@model TAMVC.Models.DBModels.TAC_ContactUs
+<div class="container">
+<div class="row">
+    <div class="contactcontainer">
+        <div class="col-xs-12 col-sm-6">
+            <div id="googleMap" style="height:400px;"></div>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            @ViewBag.ContactMessage
+            <h2>CONTACT</h2>
+            <br>
+            <p>Contact us and we'll get back to you within 24 hours.</p>
+            <p><span class="glyphicon glyphicon-map-marker"></span> Techaspect Solutions, Hyderabad</p>
+            <p><span class="glyphicon glyphicon-envelope"></span> alankrutha.ambarkar@techaspect.com</p>
+            @using(Html.BeginForm("ContactUs","ContactUs",FormMethod.Post))
+            { 
+            <div class="col-sm-10">
+                <div class="row">
+                    <div class="col-sm-6 form-group">
+                        @Html.TextBoxFor(m => m.contact_name, new { @class = "form-control", id = "name", name = "name", placeholder = "Name", required = "required" })
+                        @*<input class="form-control" id="name" name="name" placeholder="Name" type="text" required>*@
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        @Html.TextBoxFor(m => m.contact_email, new { @class = "form-control", id = "email", name = "email", placeholder = "Email", required = "required" })
+                        @*<input class="form-control" id="email" name="email" placeholder="Email" type="email" required>*@
+                    </div>
+                </div>
+                @Html.TextAreaFor(m => m.contact_comment, new { @class = "form-control", id = "comments", name = "comments", placeholder = "Comment", rows = "5" })
+                @*<textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea>*@
+                <br>
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <button class="btn btn-default pull-right" type="submit">Send</button>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</div>
+    </div>
+<script src="http://maps.googleapis.com/maps/api/js"></script>
+<script>
+    var myCenter = new google.maps.LatLng(17.4446286, 78.3780584);
+
+    function initialize() {
+        var mapProp = {
+            center: myCenter
+            , zoom: 12
+            , scrollwheel: false
+            , draggable: false
+            , mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+
+        var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+
+        var marker = new google.maps.Marker({
+            position: myCenter
+        ,
+        });
+
+        marker.setMap(map);
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>

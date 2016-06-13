@@ -1,1 +1,66 @@
-﻿<h1>Index View</h1>
+﻿@model TAMVC.Models.MyAccountModel
+<div class="row">
+    <div class="adcontainer">
+        <label>View Ads in:</label>
+        <div>
+            @Html.Action("GetCategories","PostAd")
+        </div>
+        <table class="table">
+
+            @foreach (var data in Model.lst)
+            {
+
+                <tr class="list-box">
+                    <td class="col-xs-4">
+                        <img src="@data.ClassifiedImage" width="150px" height="120px">
+                    </td>
+                    <td class="col-xs-8">
+                        @*<a href="viewdetail.html"><h4>@data.ClassifiedTitle</h4></a>*@
+                        <h4>@Html.ActionLink(@data.ClassifiedTitle, "DetailsPage", "PostAd", new { classifiedId = @data.ClassifiedId }, null)</h4>
+                        @*<p>@data.City</p>*@
+                        <p>@data.PostedDate</p>
+                    </td>
+                    <td class="col-xs-2">
+                        <h4>@data.ClassifiedPrice</h4>
+                    </td>
+                </tr>
+            }
+        </table>
+        @if (@Model.Pager.EndPage >= 1)
+        {
+            <ul class="pagination pull-right">
+                @*if (@Model.Pager.CurrentPage > 1)
+                    {
+                    <li>
+                        <a href="~/Home/Index">First</a>
+                    </li>
+                    <li>
+                        <a href="~/Home/Index?page=@(@Model.Pager.CurrentPage - 1)">Previous</a>
+                    </li>
+                    }*@
+
+                @for (var page = @Model.Pager.StartPage; page <= @Model.Pager.EndPage; page++)
+                {
+                    <li class="@(page == @Model.Pager.CurrentPage ? "active" : "")">
+                        @*<a href="~/MyAccount/Index?page=@page">@page</a>*@
+                        @Html.ActionLink(@page.ToString(), "Index", "Home", new { page = @page }, null)
+                    </li>
+                }
+
+                @if (@Model.Pager.CurrentPage < @Model.Pager.TotalPages)
+                {
+                    <li>
+                        @*<a href="~/Home/Index?page=@(@Model.Pager.CurrentPage + 1)">Next</a>*@
+                        @Html.ActionLink("Next", "Index", "Home", new { page = @Model.Pager.CurrentPage + 1 }, null)
+                    </li>
+                    <li>
+                        @*<a href="~/Home/Index?page=@(@Model.Pager.TotalPages)">Last</a>*@
+                        @Html.ActionLink("Last", "Index", "Home", new { page = @Model.Pager.TotalPages + 1 }, null)
+                    </li>
+                }
+            </ul>
+
+        }
+
+    </div>
+</div>

@@ -7,7 +7,7 @@ namespace TAMVC.Models
 {
     public class User
     {
-        public string UserId { get; set; }
+        public Guid UserId { get; set; }
         public string Email { get; set; }
         public string First_Name { get; set; }
         public string Last_Name { get; set; }

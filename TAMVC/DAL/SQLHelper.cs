@@ -6,119 +6,66 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
 using TAMVC.Models;
+using TAMVC.Models.DBModels;
 
 namespace TAMVC.DAL
 {
     public class SQLHelper
     {
-        string connectionstring = ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
+        TAC_Team6Entities db = new TAC_Team6Entities();
 
-        public bool Login(string email, string password)
+        public List<CatagoryList> ReadCatagory()
         {
-           
-            bool res = false;
-            using (SqlConnection con = new SqlConnection(connectionstring))
+            List<CatagoryList> Catgorylist = new List<CatagoryList>();
+            try
             {
-                using (SqlCommand cmd = new SqlCommand("usp_User_checklogin", con))
+                var allCategoryList = db.TAC_Category.AsEnumerable().ToList();
+                foreach (var item in allCategoryList)
                 {
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
-                    cmd.Parameters.Add("@Email", SqlDbType.VarChar).Value = email;
-                    cmd.Parameters.Add("@UPassword", SqlDbType.VarChar).Value = password;
-
-                    con.Open();
-                    DataTable dt = new DataTable();
-                    dt.Load(cmd.ExecuteReader());
-                    if (dt.Rows.Count > 0)
+                    CatagoryList obj = new CatagoryList()
                     {
-                        User u = new User();
-                        u.UserId = dt.Rows[0]["UserId"].ToString();
-                        u.Email = dt.Rows[0]["Email"].ToString();
-                        u.First_Name = dt.Rows[0]["First Name"].ToString();
-                        u.Last_Name = dt.Rows[0]["Last Name"].ToString();
-                        u.Gender = dt.Rows[0]["Gender"].ToString();
-                        u.DOB = dt.Rows[0]["DOB"].ToString();
-                        u.Address1 = dt.Rows[0]["Address1"].ToString();
-                        u.Address2 = dt.Rows[0]["Address2"].ToString();
-                        u.City = dt.Rows[0]["City"].ToString();
-                        u.State = dt.Rows[0]["State"].ToString();
-                        u.Country = dt.Rows[0]["Country"].ToString();
-                        u.Phone = dt.Rows[0]["Phone"].ToString();
-                        u.IsVerified = dt.Rows[0]["IsVerified"].ToString();
-                        u.IsLocked = dt.Rows[0]["IsLocked"].ToString();
-                        u.IsActive = dt.Rows[0]["IsActive"].ToString();
-                        u.CreatedDate = dt.Rows[0]["CreatedDate"].ToString();
-                        HttpContext.Current.Session["user"] = u;
-                        return true;
-                    }
+                        CategoryID = Convert.ToInt32(item.CategoryId),
+                        CategoryNames = Convert.ToString(item.CategoryName),
+                        CategoryImagesSource = Convert.ToString(item.CategoryImage),
+                    };
+                    Catgorylist.Add(obj);
                 }
 
-               
             }
-            return res;
-        }
-        public bool registerUser(string email,string password)
-        {
-            bool res = false;
-            using (SqlConnection con = new SqlConnection(connectionstring))
+            catch (Exception ex)
             {
-                using (SqlCommand cmd = new SqlCommand("usp_User_new_registration", con))
-                {
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("@Email", SqlDbType.VarChar).Value = email;
-                    cmd.Parameters.Add("@UPassword", SqlDbType.VarChar).Value = password;
-
-                    con.Open();
-                   int i= cmd.ExecuteNonQuery();
-                    if(i==1)
-                    {
-                        res= true;
-                    }
-
-                   
-                }
             }
-            return res;
+            return Catgorylist;
         }
 
-        public string  addClassified(Classified c)
+        public DetailsModel GetClassifiedById(int classifiedId)
         {
-            string res = "Added Successfully";
-            using (SqlConnection con = new SqlConnection(connectionstring))
+            TAC_Classified classified = new TAC_Classified();
+            if (classifiedId != 0)
             {
-                using (SqlCommand cmd = new SqlCommand("usp_Classified_Add", con))
+                classified = db.TAC_Classified.Where(x => x.ClassifiedId == classifiedId).FirstOrDefault();
+                return new DetailsModel()
                 {
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    cmd.Parameters.Add("@ClassifiedTitle", SqlDbType.VarChar).Value = c.ClassifiedTitle;
-                    cmd.Parameters.Add("@Summary", SqlDbType.VarChar).Value = c.Summary;
-                    cmd.Parameters.Add("@Description", SqlDbType.VarChar).Value = c.Description;
-                    cmd.Parameters.Add("@ClassifiedImage", SqlDbType.VarChar).Value = c.ClassifiedImage;
-                    cmd.Parameters.Add("@ClassifiedPrice", SqlDbType.Int).Value = Convert.ToInt32(c.ClassifiedPrice);
-                    cmd.Parameters.Add("@PostedDate", SqlDbType.DateTime).Value = Convert.ToDateTime( c.PostedDate);
-                    cmd.Parameters.Add("@CreatedBy", SqlDbType.UniqueIdentifier).Value = new Guid (c.CreatedBy);
-                    cmd.Parameters.Add("@CategoryName", SqlDbType.VarChar).Value = c.CategoryName;
-                    
-                    con.Open();
-                    try
-                    {
-                        cmd.ExecuteNonQuery();
-
-                    }
-                    catch(Exception e)
-                    {
-                        res = e.Message;
-                    }
-                   
-                }
+                    CategoryId = classified.CategoryId,
+                    ClassifiedId = classified.ClassifiedId,
+                    ClassifiedImage = classified.ClassifiedImage,
+                    ClassifiedPrice = classified.ClassifiedPrice,
+                    ClassifiedTitle = classified.ClassifiedTitle,
+                    CreatedBy = classified.CreatedBy,
+                    Description = classified.Description,
+                    PostedDate = classified.PostedDate,
+                    Summary = classified.Summary
+                };
             }
-            return res;
+            return null;
         }
 
-
-       
-       
-
-        
+        public string UserGUID(string email)
+        {
+            var emailId = db.TAC_User.Where(u => u.Email == email).FirstOrDefault().UserId;
+            email = emailId.ToString();
+            return email;
+        }
     }
 }

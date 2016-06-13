@@ -1,0 +1,21 @@
+﻿@{
+    Layout = null;
+}
+@model List<TAMVC.Models.DBModels.TAC_Category>
+<div class="row categories">
+    <label class="col-sm-offset-1 col-sm-4">
+        Select the category:
+    </label>
+    <div class="col-sm-10 col-sm-offset-1 ">
+        @foreach (var category in Model)
+        {
+            <div class="col-sm-3">
+                <a href="#">
+                    <img src="@category.CategoryImagesSource" class="image-box" width="180px" height="150px" id="@category.CategoryID" />
+                </a>
+                @*@Html.Raw(HttpUtility.HtmlDecode(Ajax.ActionLink("<img src='" + @category.CategoryImage + "' class='image-box' width='180px' height='150px' data-cat='" + @category.CategoryName + "'id='" + @category.CategoryId + "' />", "ViewAds", "ViewAds", new { @catId = @category.CategoryId }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "classifieds-list", HttpMethod = "GET" }).ToString()))*@
+                <h4 class="col-sm-offset-2">@category.CategoryName</h4>
+            </div>
+        }
+    </div>
+</div>

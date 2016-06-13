@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using TAMVC.Models.DBModels;
 
 namespace TAMVC.Models
 {
-    public class LoginModel
+    public class LoginModel : TAC_User
     {
-        [Required]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
+        [Display(Name = "Register Here")]
+        public string RegisterHere { get; set; }
 
-        [Required]
-        [DataType(DataType.Password)]
-        [Display(Name = "Password")]
-        public string Password { get; set; }
+        [Display(Name = "Remember me")]
+        public bool RememberMe { get; set; }
 
+        public string ErrorMessage { get; set; }
+        
     }
 }

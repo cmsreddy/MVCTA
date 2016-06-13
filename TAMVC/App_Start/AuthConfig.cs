@@ -23,10 +23,14 @@ namespace TAMVC
             //    consumerSecret: "");
 
             //OAuthWebSecurity.RegisterFacebookClient(
-            //    appId: "",
-            //    appSecret: "");
+            //    appId: "902353523209435",
+            //    appSecret: "58f1cd2ca0185b64078dc167d1b64dfd");
 
             //OAuthWebSecurity.RegisterGoogleClient();
+        //    app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+        //        {
+        //            ClientId
+        //        });
         }
     }
 }

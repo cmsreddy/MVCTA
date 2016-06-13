@@ -1,0 +1,107 @@
+﻿@model TAMVC.Models.PostAdModel
+<div class="row">
+    <label class="col-sm-offset-1 col-sm-4">
+        <h4>View Ads in:</h4>
+    </label>
+    <div class="col-sm-10 col-sm-offset-1 ">
+        @foreach (var category in Model.CList)
+        {
+            <div class="col-sm-3">
+                <a href="#">
+                    <img src="@category.CategoryImagesSource" aria-label="@category.CategoryNames" class="image-box" width="180px" height="150px" id="@category.CategoryID" />
+                </a>
+                <h4 class="category-name col-sm-offset-2">@category.CategoryNames</h4>
+            </div>
+        }
+
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="logincontainer">
+        <h4>
+            <label>Post an ad for: <span class="category"></span></label>
+        </h4>
+        @using (Html.BeginForm("PostAd", "PostAd", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal form-signin form-margin" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary()
+            @Html.HiddenFor(m => m.CId, new { id = "selectedCategory" })
+            <div class="form-group">
+                @Html.LabelFor(m => m.Classified.ClassifiedTitle, new { @class = "control-label col-sm-4" })
+                <div class="col-sm-6">
+                    @Html.TextBoxFor(m => m.Classified.ClassifiedTitle, new { @class = "form-control", id = "adTitle", name = "adTitle", placeholder = "Give the Title for your ad here" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+
+                @Html.LabelFor(m => m.Classified.Description, new { @class = "control-label col-sm-4" })
+                <div class="col-sm-6">
+                    @Html.TextBoxFor(m => m.Classified.Description, new { @class = "form-control", id = "adDesc", name = "adDesc", placeholder = "Give a brief description for your ad here" })
+
+                </div>
+            </div>
+
+
+            <div class="form-group">
+
+                @Html.LabelFor(m => m.Classified.ClassifiedImage, new { @class = "control-label col-sm-4" })
+                <div class="col-xs-6">
+                    @Html.TextBoxFor(m => m.fileupload, new { type = "file" })
+                </div>
+            </div>
+
+            <hr>
+            <h4>
+                <label class="col-sm-12 col-xs-12">Your contact details:</label>
+            </h4>
+            <div class="form-group ">
+                @Html.LabelFor(m => m.User.ContactName, new { @class = "control-label col-sm-4" })
+                <div class="col-xs-6">
+                    @Html.TextBoxFor(m => m.User.ContactName, new { @class = "form-control", id = "name", name = "name", placeholder = "Enter Your name" })
+
+                </div>
+            </div>
+            <div class="form-group ">
+                @Html.LabelFor(m => m.User.ContactPhone, new { @class = "control-label col-sm-4" })
+                <div class="col-xs-6">
+                    @Html.TextBoxFor(m => m.User.ContactPhone, new { @class = "form-control", id = "phone", name = "phone", placeholder = "+91" })
+
+                </div>
+            </div>
+            <div class="form-group ">
+                @Html.LabelFor(m => m.User.ContactCity, new { @class = "control-label col-sm-4" })
+                <div class="col-xs-6">
+                    @Html.TextBoxFor(m => m.User.ContactCity, new { @class = "form-control", id = "city", name = "city", placeholder = "Enter Your city" })
+
+                </div>
+            </div>
+            <div class="form-group ">
+                @Html.LabelFor(m => m.Classified.ClassifiedPrice, new { @class = "control-label col-sm-4" })
+                <div class="col-xs-6">
+                    @Html.TextBoxFor(m => m.Classified.ClassifiedPrice, new { @class = "form-control", id = "price", name = "price", placeholder = "Rs." })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-4 col-sm-12">
+                    <button id="create-btn" class="btn btn-default btn-success" type="submit">Post Ad</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $(".image-box").on("click", function (event) {
+            var selected = "#" + $(this).attr("id");
+            $(selected).toggleClass("image-selected");
+            $('.image-box').not(this).removeClass('image-selected');
+            $(".category").text($(this).attr("aria-label"));
+            $("#selectedCategory").val($(this).attr("id"));
+        });
+    });
+</script>

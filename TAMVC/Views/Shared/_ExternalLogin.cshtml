@@ -1,0 +1,7 @@
+﻿@model IEnumerable<Microsoft.AspNet.Membership.OpenAuth.ProviderDetails>
+           <div class="row">
+               @foreach(var mod in Model)
+               {
+                   <a href="#">@mod.ProviderDisplayName @mod.DataBag</a>
+               }
+           </div>

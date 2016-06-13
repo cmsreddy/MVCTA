@@ -1,0 +1,41 @@
+﻿@model List<TAMVC.Models.DBModels.TAC_Classified>
+<div class="row">
+    <div class="adcontainer">
+        <label>
+            Ads in :
+            <span class="category">
+            </span>
+        </label>
+        <script>
+            $(document).ready(function () {
+                $(".image-box").on("click", function (event) {
+                    var selected = "#" + $(this).attr("id");
+                    $(selected).toggleClass("image-selected");
+                    $('.image-box').not(this).removeClass('image-selected');
+                    $(".category").text($(this).attr("id"));
+                });
+            });
+        </script>
+
+        <table class="table">
+            @foreach (var data in Model)
+            {
+                <tr class="list-box">
+                    <td class="col-xs-4">
+                        <img src="@data.ClassifiedImage" width="150px" height="120px">
+                    </td>
+                    <td class="col-xs-8">
+                        @*<a href="viewdetail.html"><h4>@data.ClassifiedTitle</h4></a>*@
+                        <h4>@Html.ActionLink(@data.ClassifiedTitle, "DetailsPage", "PostAd", new { classifiedId = @data.ClassifiedId }, null)</h4>
+                        @*<p>@data.City</p>*@
+                        
+                        <p>@data.PostedDate</p>
+                    </td>
+                    <td class="col-xs-2">
+                        <h4>@data.ClassifiedPrice</h4>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

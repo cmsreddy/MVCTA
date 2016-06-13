@@ -1,21 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace TAMVC.Models
 {
     public class Classified
     {
+        public Pager Pager { get; set; }
+        public int ClassifiedId { get; set; }
+        public string CId { get; set; }
+        public List<CatagoryList> CList { get; set; }
+        
+    }
+    public class CatagoryList
+    {
+        public int CategoryID { get; set; }
+        public string CategoryNames { get; set; }
+        public string CategoryImagesSource { get; set; }
 
-        public string ClassifiedId { get; set; }
-        public string ClassifiedTitle { get; set; }
-        public string Summary { get; set; }
-        public string Description { get; set; }
-        public string ClassifiedPrice { get; set; }
-        public string ClassifiedImage { get; set; }
-        public string PostedDate { get; set; }
-        public string CreatedBy { get; set; }
-        public string CategoryName { get; set; }
     }
 }

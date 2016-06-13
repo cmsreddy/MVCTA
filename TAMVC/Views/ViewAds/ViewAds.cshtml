@@ -1,0 +1,56 @@
+﻿@model TAMVC.Models.AllAdsModel
+<div class="row categories">
+    <label class="col-sm-offset-1 col-sm-4">
+        View Ads in:
+    </label>
+    <div class="col-sm-10 col-sm-offset-1 ">
+        @foreach (var category in Model.catList)
+        {
+            <div class="col-sm-3">
+                @Html.Raw(HttpUtility.HtmlDecode(Ajax.ActionLink("<img src='" + @category.CategoryImage + "' class='image-box' width='180px' height='150px' data-cat='" + @category.CategoryName + "'id='" + @category.CategoryId + "' />", "ViewAds", "ViewAds", new { @catId = @category.CategoryId }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "classifieds-list", HttpMethod = "GET" }).ToString()))
+                <h4 class="col-sm-offset-2">@category.CategoryName</h4>
+            </div>
+        }
+    </div>
+</div>
+<div id="classifieds-list">
+    @Html.Partial("_AllAds", Model.claList)
+</div>
+<div class="container">
+    <div class="row">
+
+        @if (@Model.Pager.EndPage >= 1)
+        {
+            <ul class="pagination pull-right">
+                @for (var page = @Model.Pager.StartPage; page <= @Model.Pager.EndPage; page++)
+                {
+                    <li class="@(page == @Model.Pager.CurrentPage ? "active" : "")">
+                        @Html.ActionLink(@page.ToString(), "ViewAds", "ViewAds", new { page = @page, catId = @ViewBag.CatId }, null)
+                    </li>
+                }
+                @if (@Model.Pager.CurrentPage < @Model.Pager.TotalPages)
+                {
+                    <li>
+                        @Html.ActionLink("Next", "ViewAds", "ViewAds", new { page = @Model.Pager.CurrentPage + 1 }, null)
+                    </li>
+                    <li>
+                        @Html.ActionLink("Last", "ViewAds", "ViewAds", new { page = @Model.Pager.TotalPages }, null)
+                    </li>
+                }
+            </ul>
+        }
+
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $(".image-box").on("click", function (event) {
+            var selected = "#" + $(this).attr("id");
+            $(selected).toggleClass("image-selected");
+            $('.image-box').not(this).removeClass('image-selected');
+            $(".category").text($(this).attr("aria-label"));
+            $("#selectedCategory").val($(this).attr("id"));
+            ViewBag.CatId = $(this).attr("id");
+        });
+    });
+</script>
