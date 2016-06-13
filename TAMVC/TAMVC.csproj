@@ -242,8 +242,12 @@
     </Compile>
     <Compile Include="Models\DetailsModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
-    <Compile Include="Models\MyAccountModel.cs" />
-    <Compile Include="Models\Pager.cs" />
+    <Compile Include="Models\MyAccountModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Pager.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Models\PostAdModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Models\User.cs" />
